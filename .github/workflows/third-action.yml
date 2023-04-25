@@ -1,8 +1,6 @@
 name: Install Laravel with Livewire/Livewire and Laravel/UI
 on:
-  push:
-    tags:
-      - '*'
+  push
 jobs:
   build:
     runs-on: ubuntu-latest
