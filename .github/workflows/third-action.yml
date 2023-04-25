@@ -1,0 +1,25 @@
+name: Install Laravel with Livewire/Livewire and Laravel/UI
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: my-project
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      - name: Install Laravel
+        run: |
+          composer create-project --prefer-dist laravel/laravel $PROJECT_NAME
+          cd $PROJECT_NAME
+          composer require livewire/livewire
+          composer require laravel/ui
+          php artisan ui vue --auth
+          npm install && npm run dev
